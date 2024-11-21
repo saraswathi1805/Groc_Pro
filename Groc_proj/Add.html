@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add</title>
+        <link rel="stylesheet" href="Add.css">
+        <link rel="stylesheet" href="Home.html">
+    </head>
+    <body>
+        <div id="add-con">
+            <h1>Adding Item</h1>
+            <div id="in-main">
+                <label>S.no :</label>
+                <input type="number" id="sno"><br><br>
+                <label>Product : </label>
+                <input type="text" id="prod"><br><br>
+                <label>Price :</label>
+                <input type="number" id="price"><br><br>
+                <label>Quantity :</label>
+                <input type="number" id="qntity"><br><br>
+                <label>Discount :</label>
+                <input type="number" id="disc"><br><br>
+                
+            </div>
+            <div>
+                <button type="submit" onclick="add()">Submit</button>
+            </div>
+        </div>
+        <script>
+            function add(){
+                let tab = document.getElementById("./Home.html/tab")
+                let sno = document.getElementById("sno").value
+                let prod = document.getElementById("prod").value
+                let prc = document.getElementById("price").value
+                let qty = document.getElementById("qntity").value
+                let dis = document.getElementById("disc").value
+                let newrow = table.insertRow(table.rows.length)
+                let snoc = newrow.insertCell(0)
+                let prodc = newrow.insertCell(1)
+                let pric = newrow.insertCell(2)
+                let qtyc = newrow.insertRow(3)
+                let disc = newrow.insertCell(4)
+                newrow.innerHTML = sno
+                newrow.prodc.innerHTML = prod
+                newrow.pric.innerHTML = prc
+                newrow.qtyc.innerHTML = qty
+                newrow.disc.innerHTML = dis
+            }
+        </script>
+    </body>
+</html>

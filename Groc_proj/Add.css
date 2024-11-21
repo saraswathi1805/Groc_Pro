@@ -1,0 +1,33 @@
+#add-con{
+    justify-content: center;
+    height: 1200px;
+    width: 1500px;
+    background: linear-gradient(white,rgb(153, 248, 153));
+    position:relative;
+    left: 500px;
+    border: 3px solid black;
+}
+#in-main{
+    justify-content: center;
+    position: absolute;
+    left: 25%;
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6pc;
+    background-color: rgb(200, 253, 121);
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+}
+label,input{
+    height: 40px;
+    font-size: 2pc;
+}
+button{
+    position: relative;
+    float: inline-end;
+    right: 30%;
+    height: 40px;
+    font-size: 1cm;
+}

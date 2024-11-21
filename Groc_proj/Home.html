@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grocery Clone 1</title>
+        <link rel="stylesheet" href="../Groc_proj/Groc_proj.css">
+        <link rel="stylesheet" href="../Groc_proj/Add.css">
+        <style>
+            #edit{
+                background-color: rgb(32, 192, 237);
+                color: white;
+                position: relative;
+                width: 115px;
+            }
+            #remove{
+                background-color: rgb(190, 69, 69);
+                color: white;
+                position: relative;
+                width: 115px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="grnd_cntr">
+            <h1>Grocery Home</h1>
+            <div class="in-main">
+                <table class="tab" id="tab">
+                    <tr id="thead">
+                        <th>S.no</th>
+                        <th>Products</th>
+                        <th>Quantity</th>
+                        <th>Price(Rs)</th>
+                        <th>Discount(%)</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Biscuits</td>
+                        <td>40</td>
+                        <td>10</td>
+                        <td>3</td>
+                        <td>388</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Coconut Oil</td>
+                        <td>20</td>
+                        <td>18</td>
+                        <td>--</td>
+                        <td>360</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Chips</td>
+                        <td>30</td>
+                        <td>10</td>
+                        <td>--</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Chocolate</td>
+                        <td>10</td>
+                        <td>1</td>
+                        <td>--</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Juices</td>
+                        <td>50</td>
+                        <td>10</td>
+                        <td>--</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Noodles</td>
+                        <td>40</td>
+                        <td>18</td>
+                        <td>5</td>
+                        <td>684</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Notebook</td>
+                        <td>50</td>
+                        <td>20</td>
+                        <td>10</td>
+                        <td>900</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Powder</td>
+                        <td>60</td>
+                        <td>10</td>
+                        <td>--</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Soap</td>
+                        <td>25</td>
+                        <td>35</td>
+                        <td>7</td>
+                        <td>814</td>
+                    </tr>
+                </table>
+            </div><br><br><br>
+            <div id="add-con">
+                <h1>Adding Item</h1>
+                <div id="in-main">
+                    <label>S.no :</label>
+                    <input type="number" id="sno"><br><br>
+                    <label>Product : </label>
+                    <input type="text" id="prod"><br><br>
+                    <label>Price :</label>
+                    <input type="number" id="price"><br><br>
+                    <label>Quantity :</label>
+                    <input type="number" id="qntity"><br><br>
+                    <label>Discount :</label>
+                    <input type="number" id="disc"><br><br>
+                    
+                </div>
+                <div>
+                    <button type="submit" onclick="add()">Submit</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            function add(){
+                let tab = document.getElementById("tab")
+                let sno = document.getElementById("sno").value
+                let prod = document.getElementById("prod").value
+                let prc = document.getElementById("price").value
+                let qty = document.getElementById("qntity").value
+                let dis = document.getElementById("disc").value
+                let newrow = tab.insertRow(tab.rows.length)
+                let tot = ((prc*qty)*(100-dis))/100
+                newrow.insertCell(0).innerHTML = sno
+                newrow.insertCell(1).innerHTML = prod
+                newrow.insertCell(2).innerHTML = qty
+                newrow.insertCell(3).innerHTML = prc
+                newrow.insertCell(4).innerHTML = dis
+                newrow.insertCell(5).innerHTML = tot
+                for(let row of tab.rows){
+                    for(let cell of row.cells){
+                        if(!cell.innerHTML.trim()){
+                            cell.innerHTML = "--"
+                        }
+                    }
+                }
+                newrow.insertCell(6).innerHTML = "<button onclick='edit(this)' id='edit'>Edit</button>"+
+                "<button onclick='del(this)' id='remove'>Drop</button>"
+                clear();
+            }
+            function clear(){
+                document.getElementById("sno").value =""
+                document.getElementById("prod").value =""
+                document.getElementById("qty").value =""
+                document.getElementById("prc").value =""
+                document.getElementById("dis").value =""
+            }
+            function edit(button){
+                let row = button.parentNode.parentNode
+                let csno = row.cells[0]
+                let cprod = row.cells[1]
+                let cprc = row.cells[2]
+                let cqty = row.cells[3]
+                let cdis = row.cells[4]
+                let ctot = row.cells[5]
+
+                let edsno = prompt("New Sno :",csno.innerHTML)
+                let edprod = prompt("New Product Name :",cprod.innerHTML)
+                let edprc = prompt("New Price :",cprc.innerHTML)
+                let edqty = prompt("New Quantity :",cqty.innerHTML)
+                let eddis = prompt("New Discount :(Avoid null value)",cdis.innerHTML)
+                
+                let edtot = ((edprc*edprc)*(100-eddis))/100
+                for(let edrow of tab.rows){
+                    for(let cell of edrow.cells){
+                        if(!cell.innerHTML.trim()){
+                            cell.innerHTML = "--"
+                        }
+                    }
+                }
+
+                csno.innerHTML = edsno
+                cprod.innerHTML = edprod
+                cprc.innerHTML = edprc
+                cqty.innerHTML = edqty
+                cdis.innerHTML = eddis
+                ctot.innerHTML = edtot
+            }
+            function del(button){
+                let row = button.parentNode.parentNode
+                row.parentNode.removeChild(row)
+            }
+        </script>
+    </body>
+</html>
